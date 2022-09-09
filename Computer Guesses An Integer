@@ -1,0 +1,43 @@
+def ceil(x):
+    decimal=x%1 #get fractional part of input
+    if decimal > 0: #round up if fractional part >0
+        return (x-decimal)+1
+    else: #input was an integer => no rounding
+        return x
+
+print("Welcome Time Killer!")
+play = input("Will you play? (type yes to play otherwise not) ")
+while play == "yes":
+    print("Let's go!")
+    x = int(input("Choose the upper bound: "))
+    print(f"Guess a number between 1 and {x}")
+    pc_guess = " "
+    fix = 0
+    low = 1
+    high = x
+    count = 1
+    while pc_guess != "c":
+        guess = ceil((high + low - 1)/2)
+        print(f"Is the number {guess}? ")
+        pc_guess = input("Type c if computer guessed it right otherwise not: ")
+        if pc_guess == "c":
+            break
+        else:
+            while fix == 0:
+                check = input(f"type h if your guess is higher than computer's or l if lower: ")
+                letter_check = check
+                if letter_check == "l" or letter_check == "h":
+                    if check == "h":
+                        low = guess + 1
+                    else:
+                        high = guess - 1
+                else:
+                    print("Invalid letter entry shoud've followed the instructions")
+                    fix = 1
+                    continue
+        count = count + 1
+
+    print(f"Computer guessed it correctly! It took {count} tries/loops")
+    play = input("Continue Playing? (type yes to play otherwise program will terminate! :")
+
+print("Goodbye playa!")
